@@ -5,8 +5,6 @@ Listify, günlük alışveriş ihtiyaçlarınızı düzenli ve organize bir şek
 
 ## 📝 Hazırlayanlar
 - Hüseyin Cevher Aslan (132130049)
-- Muhammet Emin Kocaman (132130041)
-- Meylis Charyev (132130121)
 
 ## 🚀 Özellikler
 - ✅ Çoklu liste yönetimi
