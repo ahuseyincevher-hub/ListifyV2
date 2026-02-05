@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Listify</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="brand-logo">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Listify</span>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home"></i> Ana Sayfa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Alisveris" asp-action="Index">
+                                <i class="fas fa-shopping-cart"></i> Alışveriş
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Liste" asp-action="Index">
+                                <i class="fas fa-list"></i> Listeler
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Kategori" asp-action="Index">
+                                <i class="fas fa-tags"></i> Kategoriler
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Favori" asp-action="Index">
+                                <i class="fas fa-star"></i> Favoriler
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Istatistik" asp-action="Index">
+                                <i class="fas fa-chart-line"></i> İstatistikler
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        @if (TempData["Success"] != null)
+        {
+            <div class="toast toast-success" style="position: fixed; top: 1rem; right: 1rem; z-index: 1050; animation: slideIn 0.3s ease;">
+                <i class="fas fa-check-circle"></i>
+                <span>@TempData["Success"]</span>
+            </div>
+            <script>
+                setTimeout(() => {
+                    document.querySelector('.toast-success').style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => document.querySelector('.toast-success').remove(), 300);
+                }, 3000);
+            </script>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="toast toast-error" style="position: fixed; top: 1rem; right: 1rem; z-index: 1050; animation: slideIn 0.3s ease; background-color: #fee; border-left: 4px solid #dc3545; padding: 1rem 1.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                <i class="fas fa-exclamation-circle" style="color: #dc3545;"></i>
+                <span style="color: #721c24;">@TempData["Error"]</span>
+            </div>
+            <script>
+                setTimeout(() => {
+                    document.querySelector('.toast-error').style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => document.querySelector('.toast-error').remove(), 300);
+                }, 4000);
+            </script>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="main-footer">
+        <div class="container-fluid">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Listify</span>
+                </div>
+                <div class="footer-links">
+                    <a asp-controller="Alisveris" asp-action="Index">Alışveriş</a>
+                    <a asp-controller="Liste" asp-action="Index">Listeler</a>
+                    <a asp-controller="Istatistik" asp-action="Index">İstatistikler</a>
+                </div>
+                <div class="footer-copy">
+                    <small>© @DateTime.Now.Year Listify</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,123 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.RootNamespace = web_uyg
+build_property.RootNamespace = web_uyg
+build_property.ProjectDir = /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Alisveris/Duzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzL0R1emVubGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Alisveris/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzL0VrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Alisveris/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Alisveris/Yazdir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzL1lhemRpci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/AlisverisListesi/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzTGlzdGVzaS9Fa2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/AlisverisListesi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxpc3ZlcmlzTGlzdGVzaS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Favori/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmF2b3JpL0VrbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Favori/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmF2b3JpL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Istatistik/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSXN0YXRpc3Rpay9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Kategori/Duzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2F0ZWdvcmkvRHV6ZW5sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Kategori/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2F0ZWdvcmkvRWtsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Kategori/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2F0ZWdvcmkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Liste/Duzenle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGlzdGUvRHV6ZW5sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Liste/Ekle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGlzdGUvRWtsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Liste/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGlzdGUvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Liste/Kopyala.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGlzdGUvS29weWFsYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1pvi2bl1qg

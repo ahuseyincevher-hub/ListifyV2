@@ -1,0 +1,258 @@
+@model IEnumerable<web_uyg.Models.AlisverisUrunu>
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+    var varsayilanListe = ViewBag.VarsayilanListe as web_uyg.Models.AlisverisListesi;
+    var tumListeler = ViewBag.TumListeler as IEnumerable<web_uyg.Models.AlisverisListesi> ?? new List<web_uyg.Models.AlisverisListesi>();
+    var aktifListeId = ViewBag.AktifListeId as int? ?? 0;
+    var istatistik = ViewBag.Istatistik as web_uyg.Services.ListeIstatistik;
+    var favoriUrunler = ViewBag.FavoriUrunler as IEnumerable<web_uyg.Models.FavoriUrun> ?? new List<web_uyg.Models.FavoriUrun>();
+}
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div class="welcome-section">
+            <h1 class="page-title">
+                <i class="fas fa-home"></i>
+                Ana Sayfa
+            </h1>
+            <p class="page-subtitle">Alışverişlerinizi kolayca yönetin</p>
+        </div>
+        <div class="quick-actions">
+            <a asp-controller="Alisveris" asp-action="Ekle" asp-route-listeId="@aktifListeId" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                <span>Ürün Ekle</span>
+            </a>
+            <a asp-controller="Liste" asp-action="Ekle" class="btn btn-secondary">
+                <i class="fas fa-list"></i>
+                <span>Yeni Liste</span>
+            </a>
+        </div>
+    </div>
+
+    @if (istatistik != null && istatistik.ToplamUrun > 0)
+    {
+        <div class="stats-overview">
+            <div class="stat-card stat-danger">
+                <div class="stat-icon">
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">@istatistik.ToplamUrun</div>
+                    <div class="stat-label">Toplam Ürün</div>
+                </div>
+            </div>
+            <div class="stat-card stat-success">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">@istatistik.AlinanUrun</div>
+                    <div class="stat-label">Alınan</div>
+                </div>
+            </div>
+            <div class="stat-card stat-warning">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">@istatistik.AlinmayanUrun</div>
+                    <div class="stat-label">Bekleyen</div>
+                </div>
+            </div>
+            <div class="stat-card stat-info">
+                <div class="stat-icon">
+                    <i class="fas fa-lira-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:C0}", istatistik.ToplamTutar)</div>
+                    <div class="stat-label">Tahmini Tutar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-text">@istatistik.AlinanUrun/@istatistik.ToplamUrun ürün alındı</span>
+                    <span class="progress-percentage">@istatistik.TamamlanmaOrani:F0%</span>
+                </div>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" style="width: @istatistik.TamamlanmaOrani%"></div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="dashboard-grid">
+        <div class="dashboard-main">
+            @if (varsayilanListe != null)
+            {
+                <div class="content-card">
+                    <div class="card-header-wrapper">
+                        <div class="card-title-group">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h2>@varsayilanListe.Ad</h2>
+                        </div>
+                        <a asp-controller="Alisveris" asp-action="Index" class="btn-view-all">
+                            Tümünü Gör
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    @if (Model.Any())
+                    {
+                        <div class="product-list">
+                            @foreach (var item in Model.Take(5))
+                            {
+                                <div class="product-item @(item.AlındiMi ? "completed" : "")">
+                                    <div class="product-checkbox">
+                                        <i class="fas fa-@(item.AlındiMi ? "check-circle" : "circle")"></i>
+                                    </div>
+                                    <div class="product-details">
+                                        <div class="product-name">@item.UrunAdi</div>
+                                        <div class="product-meta">
+                                            <span class="product-quantity">@item.Miktar @item.MiktarBirimi</span>
+                                            @if (item.Kategori != null)
+                                            {
+                                                <span class="product-category">@item.Kategori.Ad</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    @if (item.Fiyat.HasValue)
+                                    {
+                                        <div class="product-price">
+                                            @string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:C}", item.Fiyat.Value)
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="empty-state-small">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>Liste boş</p>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (favoriUrunler.Any())
+            {
+                <div class="content-card">
+                    <div class="card-header-wrapper">
+                        <div class="card-title-group">
+                            <i class="fas fa-star"></i>
+                            <h2>Favori Ürünler</h2>
+                        </div>
+                        <a asp-controller="Favori" asp-action="Index" class="btn-view-all">
+                            Tümünü Gör
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="favorites-grid">
+                        @foreach (var fav in favoriUrunler)
+                        {
+                            <div class="favorite-item">
+                                <div class="favorite-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="favorite-info">
+                                    <div class="favorite-name">@fav.UrunAdi</div>
+                                    @if (fav.VarsayilanMiktar.HasValue)
+                                    {
+                                        <div class="favorite-quantity">@fav.VarsayilanMiktar adet</div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="dashboard-sidebar">
+            <div class="content-card">
+                <div class="card-header-wrapper">
+                    <div class="card-title-group">
+                        <i class="fas fa-list"></i>
+                        <h2>Listelerim</h2>
+                    </div>
+                    <a asp-controller="Liste" asp-action="Index" class="btn-icon">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+                <div class="lists-list">
+                    @if (tumListeler.Any())
+                    {
+                        @foreach (var liste in tumListeler)
+                        {
+                            <div class="list-item @(liste.Id == aktifListeId ? "active" : "")" onclick="window.location.href='@Url.Action("Index", "Alisveris", new { listeId = liste.Id })'">
+                                <div class="list-color" style="background-color: @liste.Renk"></div>
+                                <div class="list-info">
+                                    <div class="list-name">@liste.Ad</div>
+                                    <div class="list-meta">
+                                        @if (liste.VarsayilanMi)
+                                        {
+                                            <span class="badge-default text-white">Varsayılan</span>
+                                        }
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right list-arrow"></i>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="empty-state-small">
+                            <i class="fas fa-list"></i>
+                            <p>Henüz liste yok</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <a asp-controller="Kategori" asp-action="Index" class="quick-link-item">
+                    <div class="quick-link-icon quick-link-purple">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="quick-link-content">
+                        <div class="quick-link-title">Kategoriler</div>
+                        <div class="quick-link-desc">Ürünleri düzenleyin</div>
+                    </div>
+                    <i class="fas fa-chevron-right quick-link-arrow"></i>
+                </a>
+                
+                <a asp-controller="Istatistik" asp-action="Index" class="quick-link-item">
+                    <div class="quick-link-icon quick-link-blue">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="quick-link-content">
+                        <div class="quick-link-title">İstatistikler</div>
+                        <div class="quick-link-desc">Analizler görün</div>
+                    </div>
+                    <i class="fas fa-chevron-right quick-link-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productItems = document.querySelectorAll('.product-item');
+            productItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(4px)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+}

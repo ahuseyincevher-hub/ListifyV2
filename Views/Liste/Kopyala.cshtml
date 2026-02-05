@@ -1,0 +1,102 @@
+@model web_uyg.Models.AlisverisListesi
+
+@{
+    ViewData["Title"] = "Liste Kopyala";
+    var originalListe = ViewData["OriginalListe"] as web_uyg.Models.AlisverisListesi;
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-copy"></i>
+                        Liste Kopyala
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (originalListe != null)
+                    {
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>@originalListe.Ad</strong> listesini kopyalıyorsunuz.
+                            @originalListe.Urunler.Count ürün kopyalanacak.
+                        </div>
+                    }
+
+                    <form asp-action="Kopyala" method="post">
+                        <input type="hidden" name="id" value="@originalListe?.Id" />
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Liste Adı</label>
+                            <input asp-for="Ad" class="form-control" required autofocus />
+                            <span asp-validation-for="Ad" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Aciklama" class="form-label">Açıklama</label>
+                            <textarea asp-for="Aciklama" class="form-control" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Renk" class="form-label">Liste Rengi</label>
+                            @{
+                                var currentRenk = Model?.Renk ?? "#0d6efd";
+                            }
+                            <div class="d-flex gap-2 flex-wrap">
+                                @foreach (var renk in new[] { "#0d6efd", "#198754", "#dc3545", "#ffc107", "#6f42c1", "#fd7e14", "#0dcaf0", "#d63384", "#adb5bd" })
+                                {
+                                    var isSelected = currentRenk == renk;
+                                    <div class="color-option @(isSelected ? "selected" : "")" 
+                                         style="background-color: @renk; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; border: 3px solid transparent; display: inline-flex; align-items: center; justify-content: center;"
+                                         data-color="@renk">
+                                        @if (isSelected)
+                                        {
+                                            <i class="fas fa-check text-white"></i>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <input type="hidden" asp-for="Renk" id="selectedColor" value="@currentRenk" />
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-copy"></i> Kopyala
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline">
+                                <i class="fas fa-times"></i> İptal
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <style>
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            border-color: var(--text-primary) !important;
+        }
+    </style>
+    <script>
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(o => {
+                    o.classList.remove('selected');
+                    o.innerHTML = '';
+                });
+                this.classList.add('selected');
+                this.innerHTML = '<i class="fas fa-check text-white"></i>';
+                document.getElementById('selectedColor').value = this.dataset.color;
+            });
+        });
+    </script>
+}

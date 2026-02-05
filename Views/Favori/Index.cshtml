@@ -1,0 +1,85 @@
+@model IEnumerable<web_uyg.Models.FavoriUrun>
+
+@{
+    ViewData["Title"] = "Favori Ürünler";
+}
+
+<div class="container py-4">
+    <div class="page-header">
+        <div class="page-title-section">
+            <h1 class="page-title">
+                <i class="fas fa-star"></i>
+                Favori Ürünler
+            </h1>
+            <p class="page-subtitle">Sık kullandığınız ürünler</p>
+        </div>
+        <a asp-action="Ekle" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Yeni Favori
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <i class="fas fa-star"></i>
+            <h3>Henüz favori ürün yok</h3>
+            <p>Sık kullandığınız ürünleri favorilere ekleyin.</p>
+            <a asp-action="Ekle" class="btn btn-primary">
+                <i class="fas fa-plus"></i> İlk Favoriyi Ekle
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var favori in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 product-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="stat-icon" style="background-color: #f59e0b; width: 3rem; height: 3rem; border-radius: var(--radius); display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-star text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="card-title mb-0">@favori.UrunAdi</h5>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="fas fa-hashtag"></i>
+                                <span>Varsayılan Miktar: @(favori.VarsayilanMiktar ?? 1)</span>
+                            </div>
+                            
+                            <small class="text-muted d-block mt-2">
+                                <i class="fas fa-clock"></i>
+                                Eklenme: @favori.EklenmeTarihi.ToString("dd.MM.yyyy")
+                            </small>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex gap-2">
+                                <form asp-action="ListeyeEkle" method="post" class="flex-1">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@favori.Id" />
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="fas fa-plus"></i> Listeye Ekle
+                                    </button>
+                                </form>
+                                <a asp-action="Duzenle" asp-route-id="@favori.Id" class="btn btn-outline">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form asp-action="Sil" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@favori.Id" />
+                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bu favoriyi silmek istediğinizden emin misiniz?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,224 @@
+@{
+    var urunler = ViewData["Urunler"] as List<web_uyg.Models.AlisverisUrunu> ?? new List<web_uyg.Models.AlisverisUrunu>();
+    var liste = ViewData["Liste"] as web_uyg.Models.AlisverisListesi;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Alışveriş Listesi - @liste?.Ad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .summary-item {
+            text-align: center;
+        }
+        
+        .summary-item .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        .summary-item .label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            display: inline-block;
+        }
+        
+        .completed .checkbox {
+            background: #00b894;
+            border-color: #00b894;
+        }
+        
+        .completed td {
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #2d3436;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        @@media print {
+            body {
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛒 Alışveriş Listesi</h1>
+        <h2>@liste?.Ad</h2>
+        @if (!string.IsNullOrEmpty(liste?.Aciklama))
+        {
+            <p>@liste.Aciklama</p>
+        }
+        <p>Tarih: @DateTime.Now.ToString("dd.MM.yyyy HH:mm")</p>
+    </div>
+
+    <div class="summary">
+        <div class="summary-item">
+            <div class="value">@urunler.Count</div>
+            <div class="label">Toplam Ürün</div>
+        </div>
+        <div class="summary-item">
+            <div class="value">@urunler.Count(u => u.AlındiMi)</div>
+            <div class="label">Alınan</div>
+        </div>
+        <div class="summary-item">
+            <div class="value">@urunler.Count(u => !u.AlındiMi)</div>
+            <div class="label">Bekleyen</div>
+        </div>
+        <div class="summary-item">
+            <div class="value">@string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:C}", urunler.Where(u => u.Fiyat.HasValue).Sum(u => u.Fiyat!.Value * u.Miktar))</div>
+            <div class="label">Tahmini Tutar</div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th width="50">Durum</th>
+                <th>Ürün Adı</th>
+                <th width="100">Miktar</th>
+                <th width="120">Kategori</th>
+                <th width="100">Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var urun in urunler)
+            {
+                <tr class="@(urun.AlındiMi ? "completed" : "")">
+                    <td><span class="checkbox"></span></td>
+                    <td>
+                        <strong>@urun.UrunAdi</strong>
+                        @if (!string.IsNullOrEmpty(urun.Not))
+                        {
+                            <br><small style="color: #666;">@urun.Not</small>
+                        }
+                    </td>
+                    <td>@urun.Miktar @urun.MiktarBirimi</td>
+                    <td>
+                        @if (urun.Kategori != null)
+                        {
+                            <span class="category-badge">@urun.Kategori.Ad</span>
+                        }
+                    </td>
+                    <td class="price">
+                        @if (urun.Fiyat.HasValue)
+                        {
+                            @string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:C}", urun.Fiyat.Value)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Listify - Alışveriş Listesi Yönetimi</p>
+        <p>@DateTime.Now.ToString("f")</p>
+    </div>
+
+    <div class="no-print" style="text-align: center; margin-top: 30px;">
+        <button onclick="window.print()" style="padding: 12px 24px; font-size: 16px; background: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            🖨️ Yazdır
+        </button>
+        <button onclick="window.close()" style="padding: 12px 24px; font-size: 16px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+            ✕ Kapat
+        </button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
+</body>
+</html>

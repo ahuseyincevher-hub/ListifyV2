@@ -1,0 +1,56 @@
+@model IEnumerable<web_uyg.Models.Kategori>
+
+@{
+    ViewData["Title"] = "Kategoriler";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4">Kategoriler</h2>
+    <hr class="mb-4" />
+
+    <div class="mb-4">
+        <a asp-action="Ekle" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Yeni Kategori Ekle
+        </a>
+    </div>
+
+    <div class="row">
+        @foreach (var kategori in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@kategori.Ad</h5>
+                        <p class="card-text">@kategori.Aciklama</p>
+                        <p class="card-text">
+                            <small class="text-muted">@kategori.Urunler.Count ürün</small>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent d-flex gap-2 flex-wrap">
+                        <a asp-action="Duzenle" asp-route-id="@kategori.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-edit"></i> Düzenle
+                        </a>
+                        <form asp-action="Sil" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@kategori.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bu kategoriyi silmek istediğinizden emin misiniz?')">
+                                <i class="fas fa-trash"></i> Sil
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.card').hover(
+                function() { $(this).addClass('shadow-lg').css('cursor', 'pointer'); },
+                function() { $(this).removeClass('shadow-lg'); }
+            );
+        });
+    </script>
+}

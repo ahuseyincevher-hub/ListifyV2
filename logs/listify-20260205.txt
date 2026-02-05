@@ -1,0 +1,1261 @@
+2026-02-05 13:44:35.317 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 13:44:38.087 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 13:44:38.130 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 13:44:38.142 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 10:44:38.137831+00:00');
+SELECT changes();
+2026-02-05 13:44:38.221 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 13:44:38.232 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 13:44:38.235 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 13:44:38.245 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 13:44:38.246 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 13:44:38.496 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 13:44:38.651 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 13:44:38.764 +03:00 [INF] Listify başlatıldı
+2026-02-05 13:44:38.781 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 13:44:39.110 +03:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-02-05 13:44:39.132 +03:00 [FTL] Uygulama başlatılamadı
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Program.cs:line 120
+2026-02-05 14:04:54.897 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:04:57.431 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:04:57.547 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:04:57.563 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:04:57.556435+00:00');
+SELECT changes();
+2026-02-05 14:04:58.352 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:04:58.413 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:04:58.419 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:04:58.452 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:04:58.457 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:04:59.090 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:04:59.455 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:04:59.602 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:04:59.624 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:04:59.776 +03:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-02-05 14:04:59.805 +03:00 [FTL] Uygulama başlatılamadı
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Program.cs:line 120
+2026-02-05 14:06:23.162 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:06:25.099 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:06:25.158 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:06:25.177 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:06:25.16715+00:00');
+SELECT changes();
+2026-02-05 14:06:25.275 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:06:25.285 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:06:25.289 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:06:25.299 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:06:25.301 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:06:25.583 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:06:25.753 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:06:25.908 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:06:25.933 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:06:26.061 +03:00 [INF] Now listening on: http://localhost:5141
+2026-02-05 14:06:26.065 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-05 14:06:26.066 +03:00 [INF] Hosting environment: Development
+2026-02-05 14:06:26.067 +03:00 [INF] Content root path: /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify
+2026-02-05 14:12:11.276 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:12:13.764 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:12:13.830 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:12:13.846 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:12:13.838833+00:00');
+SELECT changes();
+2026-02-05 14:12:13.952 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:12:13.968 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:12:13.974 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:12:13.984 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:12:13.986 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:12:14.327 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:12:14.512 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:12:14.733 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:12:14.761 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:12:14.914 +03:00 [INF] Now listening on: http://localhost:5141
+2026-02-05 14:12:14.921 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-05 14:12:14.926 +03:00 [INF] Hosting environment: Development
+2026-02-05 14:12:14.926 +03:00 [INF] Content root path: /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify
+2026-02-05 14:13:29.974 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 14:13:29.990 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-02-05 14:13:30.045 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 14:13:30.094 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:30.403 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 14:13:30.520 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 14:13:30.543 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 14:13:30.556 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:30.566 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 14:13:30.656 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 14:13:30.988 +03:00 [INF] Executed ViewResult - view Index executed in 333.8811ms.
+2026-02-05 14:13:30.990 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 894.307ms
+2026-02-05 14:13:30.990 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 14:13:31.023 +03:00 [INF] HTTP GET / responded 200 in 1003.9089 ms
+2026-02-05 14:13:31.060 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/app.css?v=wnnXelisH3xxVmskNPK6tsH9C_VXkdljEuF2Vo09PgI - null null
+2026-02-05 14:13:31.075 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 1102.9739ms
+2026-02-05 14:13:31.093 +03:00 [INF] Sending file. Request path: '/css/app.css'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/css/app.css'
+2026-02-05 14:13:31.095 +03:00 [INF] HTTP GET /css/app.css responded 200 in 30.4408 ms
+2026-02-05 14:13:31.097 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/app.css?v=wnnXelisH3xxVmskNPK6tsH9C_VXkdljEuF2Vo09PgI - 200 26578 text/css 37.2682ms
+2026-02-05 14:13:40.260 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarycEFOHY3oDhHRlyzW 402
+2026-02-05 14:13:40.293 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:40.337 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:40.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 14:13:40.561 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 14:13:40.575 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:40.578 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 14:13:40.624 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 285.9992ms
+2026-02-05 14:13:40.624 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:40.624 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 351.6873 ms
+2026-02-05 14:13:40.625 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 369.581ms
+2026-02-05 14:13:40.904 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryAIGR7qHsltQKqlm7 402
+2026-02-05 14:13:40.912 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:40.913 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:40.934 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 14:13:40.945 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 14:13:40.947 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:40.948 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 14:13:40.950 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 36.5765ms
+2026-02-05 14:13:40.950 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:40.950 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 41.4758 ms
+2026-02-05 14:13:40.950 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 46.1232ms
+2026-02-05 14:13:41.908 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryI2TBtOGNQtcvCiHB 402
+2026-02-05 14:13:41.925 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:41.925 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:41.959 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 14:13:41.969 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 14:13:41.972 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:41.972 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 14:13:41.973 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 46.938ms
+2026-02-05 14:13:41.973 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:41.973 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 49.4508 ms
+2026-02-05 14:13:41.973 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 83.486ms
+2026-02-05 14:13:47.713 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryAG57nVrYHpNGdhro 402
+2026-02-05 14:13:47.726 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:47.727 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:47.747 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 14:13:47.759 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 14:13:47.763 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:47.764 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 14:13:47.765 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 36.2424ms
+2026-02-05 14:13:47.766 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:47.766 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 40.9069 ms
+2026-02-05 14:13:47.768 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 55.9007ms
+2026-02-05 14:13:48.438 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryAa2yGDfG1iLGrI9p 402
+2026-02-05 14:13:48.442 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:48.443 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:13:48.481 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 14:13:48.505 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 14:13:48.507 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:13:48.507 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 14:13:48.508 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 64.4901ms
+2026-02-05 14:13:48.508 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 14:13:48.508 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 67.3779 ms
+2026-02-05 14:13:48.510 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 72.5075ms
+2026-02-05 14:29:06.773 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:29:09.492 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:29:09.539 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:29:09.553 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:29:09.54775+00:00');
+SELECT changes();
+2026-02-05 14:29:09.637 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:29:09.649 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:29:09.652 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:29:09.664 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:29:09.666 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:29:09.900 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:29:10.038 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:29:10.152 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:29:10.167 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:29:10.326 +03:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-02-05 14:29:10.349 +03:00 [FTL] Uygulama başlatılamadı
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Program.cs:line 120
+2026-02-05 14:31:56.095 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:31:57.740 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:31:57.789 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:31:57.803 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:31:57.797287+00:00');
+SELECT changes();
+2026-02-05 14:31:57.882 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:31:57.891 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:31:57.896 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:31:57.905 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:31:57.907 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:31:58.294 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:31:58.433 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:31:58.527 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:31:58.549 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:31:58.703 +03:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-02-05 14:31:58.725 +03:00 [FTL] Uygulama başlatılamadı
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5141: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/Program.cs:line 120
+2026-02-05 14:36:42.734 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:36:45.185 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:36:45.245 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:36:45.259 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:36:45.253315+00:00');
+SELECT changes();
+2026-02-05 14:36:45.363 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:36:45.377 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:36:45.380 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:36:45.392 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:36:45.393 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:36:45.694 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:36:45.984 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:36:46.130 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:36:46.151 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:36:46.294 +03:00 [INF] Now listening on: http://localhost:5141
+2026-02-05 14:36:46.299 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-05 14:36:46.300 +03:00 [INF] Hosting environment: Development
+2026-02-05 14:36:46.303 +03:00 [INF] Content root path: /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify
+2026-02-05 14:52:11.035 +03:00 [INF] Listify başlatılıyor...
+2026-02-05 14:52:13.601 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-02-05 14:52:13.666 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2026-02-05 14:52:13.682 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-02-05 11:52:13.674241+00:00');
+SELECT changes();
+2026-02-05 14:52:14.255 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2026-02-05 14:52:14.274 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2026-02-05 14:52:14.280 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-02-05 14:52:14.292 +03:00 [INF] No migrations were applied. The database is already up to date.
+2026-02-05 14:52:14.296 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2026-02-05 14:52:14.592 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+FROM "AlisverisListeler" AS "a"
+2026-02-05 14:52:14.782 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "AlisverisListesi" AS "a")
+2026-02-05 14:52:14.930 +03:00 [INF] Listify başlatıldı
+2026-02-05 14:52:14.949 +03:00 [INF] User profile is available. Using '/Users/muhammeteminkocaman/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-02-05 14:52:15.098 +03:00 [INF] Now listening on: http://localhost:5141
+2026-02-05 14:52:15.105 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-05 14:52:15.108 +03:00 [INF] Hosting environment: Development
+2026-02-05 14:52:15.109 +03:00 [INF] Content root path: /Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify
+2026-02-05 14:59:49.759 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 14:59:49.802 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-02-05 14:59:49.888 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 14:59:49.986 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 14:59:50.347 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 14:59:50.485 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 14:59:50.516 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 14:59:50.534 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 14:59:50.548 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 14:59:50.663 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 14:59:51.087 +03:00 [INF] Executed ViewResult - view Index executed in 425.3531ms.
+2026-02-05 14:59:51.089 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 1101.5368ms
+2026-02-05 14:59:51.089 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 14:59:51.091 +03:00 [INF] HTTP GET / responded 200 in 1294.7328 ms
+2026-02-05 14:59:51.109 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 1357.8567ms
+2026-02-05 15:01:19.478 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 15:01:19.498 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 15:01:19.501 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:19.608 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 15:01:19.631 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 15:01:19.634 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 15:01:19.636 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:19.637 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 15:01:19.640 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 15:01:19.688 +03:00 [INF] Executed ViewResult - view Index executed in 48.7567ms.
+2026-02-05 15:01:19.689 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 187.6441ms
+2026-02-05 15:01:19.689 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 15:01:19.690 +03:00 [INF] HTTP GET / responded 200 in 197.2403 ms
+2026-02-05 15:01:19.704 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 227.2165ms
+2026-02-05 15:01:19.775 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - null null
+2026-02-05 15:01:19.887 +03:00 [INF] Sending file. Request path: '/css/app.css'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/css/app.css'
+2026-02-05 15:01:19.889 +03:00 [INF] HTTP GET /css/app.css responded 200 in 106.8528 ms
+2026-02-05 15:01:19.896 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - 200 26541 text/css 120.9247ms
+2026-02-05 15:01:23.504 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarygvG3xomd9ta8ph3G 402
+2026-02-05 15:01:23.524 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:23.575 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:23.675 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:23.863 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:23.881 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:23.885 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:23.962 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 386.8591ms
+2026-02-05 15:01:23.962 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:23.963 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 447.4593 ms
+2026-02-05 15:01:23.963 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 460.3736ms
+2026-02-05 15:01:24.125 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryjhX89GtT0lBLKqm9 402
+2026-02-05 15:01:24.129 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:24.129 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:24.140 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:24.152 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:24.155 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:24.155 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:24.157 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 27.5535ms
+2026-02-05 15:01:24.157 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:24.157 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 32.0969 ms
+2026-02-05 15:01:24.158 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 33.1755ms
+2026-02-05 15:01:25.425 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryAVOmP0cAUcmz8Bvk 402
+2026-02-05 15:01:25.429 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:25.431 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:25.470 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:25.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:25.480 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:25.481 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:25.483 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 50.2756ms
+2026-02-05 15:01:25.483 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:25.484 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 55.4367 ms
+2026-02-05 15:01:25.485 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 60.0386ms
+2026-02-05 15:01:27.162 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarypkSqtH554C1zeJCn 402
+2026-02-05 15:01:27.172 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:27.172 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:27.197 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:27.207 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:27.209 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:27.210 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:27.211 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 38.3191ms
+2026-02-05 15:01:27.212 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:27.212 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 41.7833 ms
+2026-02-05 15:01:27.214 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 53.1545ms
+2026-02-05 15:01:28.262 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryLjqClMMUioOs9vBN 402
+2026-02-05 15:01:28.263 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:28.264 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:28.294 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:28.307 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:28.313 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:28.316 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:28.319 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 54.7847ms
+2026-02-05 15:01:28.320 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:28.320 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 57.5539 ms
+2026-02-05 15:01:28.322 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 59.5417ms
+2026-02-05 15:01:30.133 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarygFL892LAkDB0zn6y 402
+2026-02-05 15:01:30.134 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:30.136 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:30.157 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:30.166 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:30.168 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:30.168 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:30.169 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 32.2045ms
+2026-02-05 15:01:30.170 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:30.170 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 35.7393 ms
+2026-02-05 15:01:30.171 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 37.4554ms
+2026-02-05 15:01:31.019 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryX8PyyKDlVt34xVmC 402
+2026-02-05 15:01:31.020 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:31.020 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:31.046 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:31.054 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:31.057 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:31.057 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:31.060 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 38.5865ms
+2026-02-05 15:01:31.060 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:31.061 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 40.7035 ms
+2026-02-05 15:01:31.062 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 42.3305ms
+2026-02-05 15:01:31.995 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryKlvj93S59LUAv9I9 402
+2026-02-05 15:01:31.996 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:31.998 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:32.025 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:32.035 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:32.036 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:32.037 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:32.038 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 39.994ms
+2026-02-05 15:01:32.038 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:32.038 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 42.1939 ms
+2026-02-05 15:01:32.039 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 43.5105ms
+2026-02-05 15:01:34.099 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryMdm3aIAFwi7Ty29B 402
+2026-02-05 15:01:34.102 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:34.103 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:34.118 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:34.124 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:34.125 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:34.126 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:34.126 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 23.3019ms
+2026-02-05 15:01:34.126 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:34.126 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 26.5540 ms
+2026-02-05 15:01:34.127 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 28.4249ms
+2026-02-05 15:01:36.159 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarym6fbqSc7lOXz26i3 402
+2026-02-05 15:01:36.162 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:36.163 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:36.176 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:36.187 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:36.189 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:36.190 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:36.192 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 27.7653ms
+2026-02-05 15:01:36.192 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:36.193 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 32.1869 ms
+2026-02-05 15:01:36.194 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 35.571ms
+2026-02-05 15:01:37.268 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryStvmC2maQq1t89Qj 402
+2026-02-05 15:01:37.268 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:37.268 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:37.286 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:37.289 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:37.292 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:37.292 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:37.295 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 26.3056ms
+2026-02-05 15:01:37.299 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:37.299 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 31.0142 ms
+2026-02-05 15:01:37.300 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 31.846ms
+2026-02-05 15:01:38.983 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 15:01:38.985 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 15:01:38.986 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:39.004 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 15:01:39.015 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 15:01:39.020 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 15:01:39.023 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:39.026 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 15:01:39.030 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 15:01:39.056 +03:00 [INF] Executed ViewResult - view Index executed in 26.4821ms.
+2026-02-05 15:01:39.056 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 70.3945ms
+2026-02-05 15:01:39.057 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 15:01:39.057 +03:00 [INF] HTTP GET / responded 200 in 72.8219 ms
+2026-02-05 15:01:39.058 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 74.7315ms
+2026-02-05 15:01:39.136 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - null null
+2026-02-05 15:01:39.136 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-02-05 15:01:39.137 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/lib/jquery/dist/jquery.min.js - null null
+2026-02-05 15:01:39.141 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/js/app.js?v=QInFFutn5pWBsPljIqEKjnOMVXm5kuy4WYNXZYeMRJo - null null
+2026-02-05 15:01:39.143 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-02-05 15:01:39.146 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/site.css?v=j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg - null null
+2026-02-05 15:01:39.156 +03:00 [INF] Sending file. Request path: '/js/app.js'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/js/app.js'
+2026-02-05 15:01:39.156 +03:00 [INF] Sending file. Request path: '/css/app.css'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/css/app.css'
+2026-02-05 15:01:39.157 +03:00 [INF] HTTP GET /js/app.js responded 200 in 12.8043 ms
+2026-02-05 15:01:39.157 +03:00 [INF] HTTP GET /css/app.css responded 200 in 20.9713 ms
+2026-02-05 15:01:39.158 +03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/css/site.css'
+2026-02-05 15:01:39.159 +03:00 [INF] HTTP GET /css/site.css responded 200 in 13.1752 ms
+2026-02-05 15:01:39.159 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - 200 26541 text/css 22.9249ms
+2026-02-05 15:01:39.160 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/site.css?v=j6fhJSuuyLpOSLuPJU0TsDV0iNjor5S3rDnvxJrt4bg - 200 667 text/css 13.9812ms
+2026-02-05 15:01:39.159 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/js/app.js?v=QInFFutn5pWBsPljIqEKjnOMVXm5kuy4WYNXZYeMRJo - 200 3399 text/javascript 18.017ms
+2026-02-05 15:01:39.161 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js'
+2026-02-05 15:01:39.161 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - null null
+2026-02-05 15:01:39.161 +03:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 15.6875 ms
+2026-02-05 15:01:39.161 +03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/lib/jquery/dist/jquery.min.js'
+2026-02-05 15:01:39.162 +03:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 24.3137 ms
+2026-02-05 15:01:39.162 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80721 text/javascript 20.0267ms
+2026-02-05 15:01:39.162 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/lib/jquery/dist/jquery.min.js - 200 87533 text/javascript 24.508ms
+2026-02-05 15:01:39.164 +03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/js/site.js'
+2026-02-05 15:01:39.164 +03:00 [INF] HTTP GET /js/site.js responded 200 in 2.5316 ms
+2026-02-05 15:01:39.164 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - 200 231 text/javascript 3.8666ms
+2026-02-05 15:01:39.169 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css'
+2026-02-05 15:01:39.169 +03:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 200 in 32.6392 ms
+2026-02-05 15:01:39.170 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/lib/bootstrap/dist/css/bootstrap.min.css - 200 232803 text/css 33.7832ms
+2026-02-05 15:01:39.424 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/favicon.ico - null null
+2026-02-05 15:01:39.429 +03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: '/Users/muhammeteminkocaman/Desktop/hepsiorada/hepsiorada_app/Listify/wwwroot/favicon.ico'
+2026-02-05 15:01:39.431 +03:00 [INF] HTTP GET /favicon.ico responded 200 in 5.3121 ms
+2026-02-05 15:01:39.432 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/favicon.ico - 200 5430 image/x-icon 7.9679ms
+2026-02-05 15:01:42.122 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryMdkPWqqkkuv6ONzk 402
+2026-02-05 15:01:42.126 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:42.128 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:42.155 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:42.165 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:42.167 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:42.168 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:42.172 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 43.3377ms
+2026-02-05 15:01:42.173 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:42.173 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 47.1635 ms
+2026-02-05 15:01:42.175 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 53.9012ms
+2026-02-05 15:01:44.136 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarySvzLGiGVp9Iml4Se 402
+2026-02-05 15:01:44.137 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:44.138 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:44.151 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:44.154 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:44.157 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:44.157 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:44.159 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 20.7239ms
+2026-02-05 15:01:44.159 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:44.159 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 22.0899 ms
+2026-02-05 15:01:44.160 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 23.602ms
+2026-02-05 15:01:46.044 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryyQPpv2SleaO5jfZL 402
+2026-02-05 15:01:46.047 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:46.049 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:46.078 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:46.087 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:46.090 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:46.091 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:46.092 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 42.925ms
+2026-02-05 15:01:46.092 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:46.093 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 47.7237 ms
+2026-02-05 15:01:46.095 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 50.9926ms
+2026-02-05 15:01:46.741 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryBtnzMqVZfSPKeubX 402
+2026-02-05 15:01:46.742 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:46.744 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:46.770 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:46.778 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:46.781 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:46.781 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:46.781 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 36.89ms
+2026-02-05 15:01:46.781 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:46.782 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 40.3340 ms
+2026-02-05 15:01:46.782 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 41.4535ms
+2026-02-05 15:01:47.461 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundaryJ5d8YUr00Vh0Ldhr 402
+2026-02-05 15:01:47.467 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:47.468 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:47.481 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:47.491 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:47.499 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:47.500 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:47.501 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 32.582ms
+2026-02-05 15:01:47.501 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:47.501 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 39.6749 ms
+2026-02-05 15:01:47.502 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 40.9325ms
+2026-02-05 15:01:48.211 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundary89wbDECA7MPTeVVB 402
+2026-02-05 15:01:48.212 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:48.212 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:48.235 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:48.249 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:48.252 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:48.252 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:48.255 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 42.3201ms
+2026-02-05 15:01:48.255 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:48.255 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 43.8924 ms
+2026-02-05 15:01:48.257 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 45.859ms
+2026-02-05 15:01:49.435 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - multipart/form-data; boundary=----WebKitFormBoundarydjbWHCAxwVAWaeMb 402
+2026-02-05 15:01:49.437 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:49.438 +03:00 [INF] Route matched with {action = "DurumGuncelle", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DurumGuncelle(Int32, Int32) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 15:01:49.452 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."Id" = @p
+LIMIT 1
+2026-02-05 15:01:49.460 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AlisverisListesi" SET "AlındiMi" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2026-02-05 15:01:49.462 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 15:01:49.462 +03:00 [INF] Executing JsonResult, writing value of type '<>f__AnonymousType2`2[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[web_uyg.Services.ListeIstatistik, web_uyg, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-05 15:01:49.464 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg) in 25.3375ms
+2026-02-05 15:01:49.465 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.DurumGuncelle (web_uyg)'
+2026-02-05 15:01:49.465 +03:00 [INF] HTTP POST /Alisveris/DurumGuncelle responded 200 in 29.9392 ms
+2026-02-05 15:01:49.466 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5141/Alisveris/DurumGuncelle - 200 null application/json; charset=utf-8 31.342ms
+2026-02-05 16:52:35.963 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 16:52:35.979 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 16:52:35.985 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 16:52:36.032 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 16:52:36.052 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 16:52:36.055 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 16:52:36.056 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 16:52:36.057 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 16:52:36.067 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 16:52:36.093 +03:00 [INF] Executed ViewResult - view Index executed in 34.7754ms.
+2026-02-05 16:52:36.093 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 107.2048ms
+2026-02-05 16:52:36.093 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 16:52:36.094 +03:00 [INF] HTTP GET / responded 200 in 115.6264 ms
+2026-02-05 16:52:36.095 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 139.9382ms
+2026-02-05 16:52:36.102 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - null null
+2026-02-05 16:52:36.121 +03:00 [INF] The file /css/app.css was not modified
+2026-02-05 16:52:36.121 +03:00 [INF] HTTP GET /css/app.css responded 304 in 19.0226 ms
+2026-02-05 16:52:36.122 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - 304 null text/css 20.1281ms
+2026-02-05 18:17:38.298 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/ - null null
+2026-02-05 18:17:38.306 +03:00 [INF] Executing endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 18:17:38.308 +03:00 [INF] Route matched with {action = "Index", controller = "Alisveris"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[System.Int32], System.String, System.String, System.Nullable`1[System.Int32], System.String) on controller web_uyg.Controllers.AlisverisController (web_uyg).
+2026-02-05 18:17:38.340 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a1"."Id", "a1"."Aciklama", "a1"."Ad", "a1"."OlusturulmaTarihi", "a1"."Renk", "a1"."SonDegistirilmeTarihi", "a1"."VarsayilanMi", "s"."Id", "s"."AlındiMi", "s"."EklenmeTarihi", "s"."Fiyat", "s"."KategoriId", "s"."ListeId", "s"."Miktar", "s"."MiktarBirimi", "s"."Not", "s"."ResimUrl", "s"."SiraNo", "s"."UrunAdi", "s"."Id0", "s"."Aciklama", "s"."Ad"
+FROM (
+    SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi"
+    FROM "AlisverisListeler" AS "a"
+    WHERE "a"."VarsayilanMi"
+    LIMIT 1
+) AS "a1"
+LEFT JOIN (
+    SELECT "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi", "k"."Id" AS "Id0", "k"."Aciklama", "k"."Ad"
+    FROM "AlisverisListesi" AS "a0"
+    LEFT JOIN "Kategoriler" AS "k" ON "a0"."KategoriId" = "k"."Id"
+) AS "s" ON "a1"."Id" = "s"."ListeId"
+ORDER BY "a1"."Id", "s"."Id"
+2026-02-05 18:17:38.354 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi", "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "AlisverisListesi" AS "a"
+LEFT JOIN "Kategoriler" AS "k" ON "a"."KategoriId" = "k"."Id"
+WHERE "a"."ListeId" = @listeId
+ORDER BY "a"."SiraNo", "a"."EklenmeTarihi" DESC
+2026-02-05 18:17:38.356 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."Aciklama", "a"."Ad", "a"."OlusturulmaTarihi", "a"."Renk", "a"."SonDegistirilmeTarihi", "a"."VarsayilanMi", "a0"."Id", "a0"."AlındiMi", "a0"."EklenmeTarihi", "a0"."Fiyat", "a0"."KategoriId", "a0"."ListeId", "a0"."Miktar", "a0"."MiktarBirimi", "a0"."Not", "a0"."ResimUrl", "a0"."SiraNo", "a0"."UrunAdi"
+FROM "AlisverisListeler" AS "a"
+LEFT JOIN "AlisverisListesi" AS "a0" ON "a"."Id" = "a0"."ListeId"
+ORDER BY "a"."VarsayilanMi" DESC, "a"."SonDegistirilmeTarihi" DESC, "a"."OlusturulmaTarihi" DESC, "a"."Id"
+2026-02-05 18:17:38.357 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@listeId='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AlındiMi", "a"."EklenmeTarihi", "a"."Fiyat", "a"."KategoriId", "a"."ListeId", "a"."Miktar", "a"."MiktarBirimi", "a"."Not", "a"."ResimUrl", "a"."SiraNo", "a"."UrunAdi"
+FROM "AlisverisListesi" AS "a"
+WHERE "a"."ListeId" = @listeId
+2026-02-05 18:17:38.358 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "k"."Id", "k"."Aciklama", "k"."Ad"
+FROM "Kategoriler" AS "k"
+ORDER BY "k"."Ad"
+2026-02-05 18:17:38.365 +03:00 [INF] Executing ViewResult, running view Index.
+2026-02-05 18:17:38.386 +03:00 [INF] Executed ViewResult - view Index executed in 27.7308ms.
+2026-02-05 18:17:38.387 +03:00 [INF] Executed action web_uyg.Controllers.AlisverisController.Index (web_uyg) in 78.7513ms
+2026-02-05 18:17:38.387 +03:00 [INF] Executed endpoint 'web_uyg.Controllers.AlisverisController.Index (web_uyg)'
+2026-02-05 18:17:38.387 +03:00 [INF] HTTP GET / responded 200 in 84.0157 ms
+2026-02-05 18:17:38.390 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/ - 200 null text/html; charset=utf-8 101.8407ms
+2026-02-05 18:17:38.395 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - null null
+2026-02-05 18:17:38.409 +03:00 [INF] The file /css/app.css was not modified
+2026-02-05 18:17:38.411 +03:00 [INF] HTTP GET /css/app.css responded 304 in 15.2271 ms
+2026-02-05 18:17:38.412 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5141/css/app.css?v=IEcr9v9ln3a_puLQK1fVNUTCmkhQdimdbCvZ2iSltbw - 304 null text/css 17.4187ms

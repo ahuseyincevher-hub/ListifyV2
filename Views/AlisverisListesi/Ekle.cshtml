@@ -1,0 +1,94 @@
+@model web_uyg.Models.AlisverisUrunu
+
+@{
+    ViewData["Title"] = "Yeni Ürün Ekle";
+    var birimler = new[] { "Adet", "Kg", "Gram", "Litre", "Paket" };
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">
+                        <i class="bi bi-plus-circle"></i> @ViewData["Title"]
+                    </h2>
+
+                    <form asp-action="Ekle">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="UrunAdi" class="form-label">Ürün Adı</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-box"></i>
+                                </span>
+                                <input asp-for="UrunAdi" class="form-control" placeholder="Örnek: Ekmek" />
+                            </div>
+                            <span asp-validation-for="UrunAdi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="KategoriId" class="form-label">Kategori</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-tag"></i>
+                                </span>
+                                <select asp-for="KategoriId" class="form-select">
+                                    <option value="">-- Kategori Seçiniz --</option>
+                                    @foreach (var kategori in ViewBag.Kategoriler)
+                                    {
+                                        <option value="@kategori.Id">@kategori.Ad</option>
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="KategoriId" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Miktar" class="form-label">Miktar</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-123"></i>
+                                    </span>
+                                    <input asp-for="Miktar" class="form-control" type="number" min="1" value="1" />
+                                </div>
+                                <span asp-validation-for="Miktar" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="MiktarBirimi" class="form-label">Birim</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-rulers"></i>
+                                    </span>
+                                    <select asp-for="MiktarBirimi" class="form-select">
+                                        @foreach (var birim in birimler)
+                                        {
+                                            <option value="@birim">@birim</option>
+                                        }
+                                    </select>
+                                </div>
+                                <span asp-validation-for="MiktarBirimi" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Kaydet
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Listeye Dön
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

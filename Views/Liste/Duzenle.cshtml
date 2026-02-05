@@ -1,0 +1,133 @@
+@model web_uyg.Models.AlisverisListesi
+
+@{
+    ViewData["Title"] = "Liste Düzenle";
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit"></i>
+                        Liste Düzenle: @Model.Ad
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Duzenle" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Ad" class="form-label">Liste Adı</label>
+                            <input asp-for="Ad" class="form-control" />
+                            <span asp-validation-for="Ad" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Aciklama" class="form-label">Açıklama</label>
+                            <textarea asp-for="Aciklama" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="Aciklama" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Renk" class="form-label">Liste Rengi</label>
+                            <div class="d-flex gap-2 flex-wrap">
+                                @foreach (var renk in new[] { "#0d6efd", "#198754", "#dc3545", "#ffc107", "#6f42c1", "#fd7e14", "#0dcaf0", "#d63384", "#adb5bd" })
+                                {
+                                    <div class="color-option @(Model.Renk == renk ? "selected" : "")" 
+                                         style="background-color: @renk; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; border: 3px solid transparent; display: inline-flex; align-items: center; justify-content-center;"
+                                         data-color="@renk">
+                                        @if (Model.Renk == renk)
+                                        {
+                                            <i class="fas fa-check text-white"></i>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <input type="hidden" asp-for="Renk" id="selectedColor" />
+                            <span asp-validation-for="Renk" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input asp-for="VarsayilanMi" class="form-check-input" />
+                            <label asp-for="VarsayilanMi" class="form-check-label">
+                                Varsayılan liste olarak ayarla
+                            </label>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Kaydet
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline">
+                                <i class="fas fa-arrow-left"></i> İptal
+                            </a>
+                            <a asp-controller="Alisveris" asp-action="Index" asp-route-listeId="@Model.Id" 
+                               class="btn btn-success ms-auto">
+                                <i class="fas fa-shopping-cart"></i> Listeyi Aç
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            @if (Model.Urunler.Any())
+            {
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-box"></i>
+                            Listedeki Ürünler (@Model.Urunler.Count)
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            @foreach (var urun in Model.Urunler.OrderByDescending(u => u.EklenmeTarihi))
+                            {
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@urun.UrunAdi</strong>
+                                        <span class="badge badge-secondary ms-2">@urun.Miktar @urun.MiktarBirimi</span>
+                                        @if (urun.AlındiMi)
+                                        {
+                                            <span class="badge badge-success ms-1">Alındı</span>
+                                        }
+                                    </div>
+                                    <small class="text-muted">@urun.EklenmeTarihi.ToString("dd.MM.yyyy")</small>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <style>
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            border-color: var(--text-primary) !important;
+        }
+    </style>
+    <script>
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(o => {
+                    o.classList.remove('selected');
+                    o.innerHTML = '';
+                });
+                this.classList.add('selected');
+                this.innerHTML = '<i class="fas fa-check text-white"></i>';
+                document.getElementById('selectedColor').value = this.dataset.color;
+            });
+        });
+    </script>
+}

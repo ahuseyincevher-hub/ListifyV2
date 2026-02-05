@@ -1,0 +1,69 @@
+@model web_uyg.Models.Kategori
+
+@{
+    ViewData["Title"] = "Kategori Ekle";
+}
+
+<div class="container py-4">
+    <div class="page-header">
+        <div class="page-title-section">
+            <h1 class="page-title">
+                <i class="fas fa-folder-plus"></i>
+                Kategori Ekle
+            </h1>
+            <p class="page-subtitle">Ürünlerinizi gruplamak için yeni kategori oluşturun</p>
+        </div>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Listeye Dön
+        </a>
+    </div>
+
+    <div class="form-container">
+        <form asp-action="Ekle" method="post" class="product-form">
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+            
+            <div class="form-section">
+                <h3 class="form-section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Kategori Bilgileri
+                </h3>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label asp-for="Ad" class="form-label">
+                            <i class="fas fa-tag"></i>
+                            Kategori Adı
+                        </label>
+                        <input asp-for="Ad" class="form-control" placeholder="Örn: Meyveler" required autofocus />
+                        <span asp-validation-for="Ad" class="field-validation-error"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Aciklama" class="form-label">
+                        <i class="fas fa-align-left"></i>
+                        Açıklama
+                    </label>
+                    <textarea asp-for="Aciklama" class="form-control" rows="3" placeholder="Kategori hakkında açıklama..."></textarea>
+                    <span asp-validation-for="Aciklama" class="field-validation-error"></span>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus"></i>
+                    Kategori Ekle
+                </button>
+                <a asp-action="Index" class="btn btn-outline btn-lg">
+                    <i class="fas fa-times"></i>
+                    İptal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

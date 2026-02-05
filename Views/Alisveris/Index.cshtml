@@ -1,0 +1,644 @@
+@model IEnumerable<web_uyg.Models.AlisverisUrunu>
+
+@{
+    ViewData["Title"] = "Alışveriş Listesi";
+    var tumListeler = ViewBag.TumListeler as IEnumerable<web_uyg.Models.AlisverisListesi> ?? new List<web_uyg.Models.AlisverisListesi>();
+    var aktifListe = ViewBag.AktifListe as web_uyg.Models.AlisverisListesi;
+    var aktifListeId = ViewBag.AktifListeId as int? ?? 0;
+    var istatistik = ViewBag.Istatistik as web_uyg.Services.ListeIstatistik;
+}
+
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div>
+                    <h1 class="mb-1">
+                        <i class="fas fa-shopping-cart text-primary"></i>
+                        @(aktifListe?.Ad ?? "Alışveriş Listesi")
+                    </h1>
+                    @if (aktifListe != null && !string.IsNullOrEmpty(aktifListe.Aciklama))
+                    {
+                        <p class="text-muted mb-0">@aktifListe.Aciklama</p>
+                    }
+                </div>
+                <div>
+                    <a asp-controller="Liste" asp-action="Ekle" class="btn btn-outline">
+                        <i class="fas fa-plus"></i> Yeni Liste
+                    </a>
+                    <a asp-action="Ekle" asp-route-listeId="@aktifListeId" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Ürün Ekle
+                    </a>
+                    <a asp-action="Yazdir" asp-route-listeId="@aktifListeId" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-print"></i> Yazdır
+                    </a>
+                    <a asp-action="CSVExport" asp-route-listeId="@aktifListeId" class="btn btn-success">
+                        <i class="fas fa-file-csv"></i> CSV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (tumListeler.Any())
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="liste-selector">
+                    @foreach (var liste in tumListeler)
+                    {
+                        <a asp-controller="Alisveris" asp-action="Index" asp-route-listeId="@liste.Id"
+                           class="liste-badge @(liste.Id == aktifListeId ? "active" : "")"
+                           style="background-color: @(liste.Id == aktifListeId ? liste.Renk : liste.Renk + "33"); text-decoration: none; color: inherit;">
+                            <i class="fas fa-list"></i>
+                            @liste.Ad
+                            @if (liste.VarsayilanMi)
+                            {
+                                <span class="badge badge-warning">Varsayılan</span>
+                            }
+                        </a>
+                    }
+                    <a asp-controller="Liste" asp-action="Index" class="liste-badge" style="background-color: var(--bg-tertiary);">
+                        <i class="fas fa-cog"></i> Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (istatistik != null && istatistik.ToplamUrun > 0)
+    {
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3>@istatistik.ToplamUrun</h3>
+                    <p>Toplam Ürün</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card stats-success">
+                    <h3>@istatistik.AlinanUrun</h3>
+                    <p>Alınan</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card stats-warning">
+                    <h3>@istatistik.AlinmayanUrun</h3>
+                    <p>Bekleyen</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card stats-info">
+                    <h3>@string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:C}", istatistik.ToplamTutar)</h3>
+                    <p>Tahmini Tutar</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="stats-text">@istatistik.AlinanUrun/@istatistik.ToplamUrun ürün alındı</span>
+                            <span class="badge badge-primary">@istatistik.TamamlanmaOrani.ToString("F1")%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: @istatistik.TamamlanmaOrani%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="search-filter-bar">
+                <div class="search-section">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="aramaInput" class="form-control" placeholder="Ürün ara..." value="@ViewBag.AramaMetni">
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <select id="kategoriFilter" class="form-select">
+                        <option value="">Tüm Kategoriler</option>
+                        @if (ViewBag.Kategoriler != null)
+                        {
+                            @foreach (var kategori in ViewBag.Kategoriler)
+                            {
+                                <option value="@kategori.Id" selected="@(ViewBag.KategoriId?.ToString() == kategori.Id.ToString())">
+                                    @kategori.Ad
+                                </option>
+                            }
+                        }
+                    </select>
+                    
+                    <select id="durumFilter" class="form-select">
+                        <option value="">Tümü</option>
+                        <option value="alinanlar" selected="@(ViewBag.Filtre == "alinanlar")">Alınanlar</option>
+                        <option value="alinmayanlar" selected="@(ViewBag.Filtre == "alinmayanlar")">Alınmayanlar</option>
+                    </select>
+                    
+                    <select id="siralamaFilter" class="form-select">
+                        <option value="tarih" selected="@(ViewBag.Siralama == "tarih")">Yeniden Eskiye</option>
+                        <option value="tariheski" selected="@(ViewBag.Siralama == "tariheski")">Eskiden Yeniye</option>
+                        <option value="ada" selected="@(ViewBag.Siralama == "ada")">Ada Göre (A-Z)</option>
+                        <option value="adaz" selected="@(ViewBag.Siralama == "adaz")">Ada Göre (Z-A)</option>
+                        <option value="fiyat" selected="@(ViewBag.Siralama == "fiyat")">Fiyat (Ucuz-Pahalı)</option>
+                        <option value="fiyatyuksek" selected="@(ViewBag.Siralama == "fiyatyuksek")">Fiyat (Pahalı-Ucuz)</option>
+                    </select>
+                    
+                    <button id="filtreTemizle" class="btn btn-secondary">
+                        <i class="fas fa-times"></i>
+                        Temizle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sadece liste düzeyi aksiyonları (toplu işlemler sadece alt sabit çubukta) -->
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-end gap-2">
+            <form asp-action="ListeyiTemizle" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="listeId" value="@aktifListeId" />
+                <input type="hidden" name="sadeceAlinanlar" value="true" />
+                <button type="submit" class="btn btn-warning" onclick="return confirm('Alınan ürünler listeden silinecek. Emin misiniz?');">
+                    <i class="fas fa-broom"></i> Alınanları Temizle
+                </button>
+            </form>
+            <form asp-action="ListeyiTemizle" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="listeId" value="@aktifListeId" />
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Listedeki tüm ürünler silinecek. Bu işlem geri alınamaz. Emin misiniz?');">
+                    <i class="fas fa-trash"></i> Tümünü Temizle
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gizli: Alt çubuk butonları bunları tetikler (DOM'da kalmalı) -->
+    <div id="topluIslemler" class="visually-hidden" aria-hidden="true">
+        <button type="button" id="topluSil" class="btn btn-danger"><i class="fas fa-trash"></i> Seçilenleri Sil</button>
+        <button type="button" id="topluAlinan" class="btn btn-success"><i class="fas fa-check"></i> Alındı Yap</button>
+        <button type="button" id="topluAlinmayan" class="btn btn-warning"><i class="fas fa-times"></i> Alınmayan Yap</button>
+        <select id="hedefListe" class="form-select">
+            <option value="">Hedef Liste Seç...</option>
+            @if (tumListeler != null)
+            {
+                @foreach (var liste in tumListeler)
+                {
+                    <option value="@liste.Id">@liste.Ad</option>
+                }
+            }
+        </select>
+        <button type="button" id="topluTasi" class="btn btn-info"><i class="fas fa-arrow-right"></i> Taşı</button>
+        <button type="button" id="secimiTemizle" class="btn btn-outline-secondary"><i class="fas fa-times"></i> Kapat</button>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <i class="fas fa-shopping-basket"></i>
+            <h3>Liste boş</h3>
+            <p>Alışveriş listesine ürün eklemek için "Ürün Ekle" butonuna tıklayın.</p>
+            <a asp-action="Ekle" asp-route-listeId="@aktifListeId" class="btn btn-primary">
+                <i class="fas fa-plus"></i> İlk Ürünü Ekle
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card product-card @(item.AlındiMi ? "purchased" : "")" data-urun-id="@item.Id">
+                        <form asp-action="DurumGuncelle" method="post" id="durumForm-@item.Id" style="display: none;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                        </form>
+                        
+                        <div class="card-body p-3">
+                            <!-- Üst kısım: Checkbox ve İkon -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="checkbox-wrapper">
+                                    <input class="form-check-input shadow-sm product-status-checkbox" 
+                                           type="checkbox" 
+                                           @(item.AlındiMi ? "checked" : "") 
+                                           onchange="toggleProductStatus(@item.Id, @aktifListeId, this)">
+                                </div>
+                                
+                                <div class="icon-container">
+                                    @if (!string.IsNullOrEmpty(item.ResimUrl))
+                                    {
+                                        <img src="@item.ResimUrl" alt="@item.UrunAdi">
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-box"></i>
+                                    }
+                                </div>
+                            </div>
+                            
+                            <!-- Ürün Adı -->
+                            <h6 class="product-title @(item.AlındiMi ? "text-decoration-line-through text-muted" : "")">
+                                @item.UrunAdi
+                            </h6>
+                            
+                            <!-- Miktar, Kategori ve Fiyat -->
+                            <div class="product-meta d-flex align-items-center flex-wrap gap-2 mb-3">
+                                <span class="product-quantity">@item.Miktar @item.MiktarBirimi</span>
+                                @if (item.Kategori != null)
+                                {
+                                    <span class="badge badge-category">@item.Kategori.Ad</span>
+                                }
+                                @if (item.Fiyat.HasValue)
+                                {
+                                    <span class="badge badge-price">₺@item.Fiyat.Value.ToString("F2")</span>
+                                }
+                            </div>
+                            
+                            <!-- Durum Butonu ve Menü -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" 
+                                        class="btn status-btn @(item.AlındiMi ? "status-purchased" : "status-pending")"
+                                        onclick="toggleStatusFromButton(@item.Id, @aktifListeId)">
+                                    <i class="fas fa-check"></i>
+                                    @(item.AlındiMi ? "Alındı" : "Alındı yap")
+                                </button>
+                                
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-muted p-1" type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Duzenle" asp-route-id="@item.Id">
+                                                <i class="fas fa-edit me-2"></i>Düzenle
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form asp-action="Sil" method="post" class="d-inline w-100">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <input type="hidden" name="listeId" value="@aktifListeId" />
+                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Bu ürün listeden silinecek. Emin misiniz?');">
+                                                    <i class="fas fa-trash me-2"></i>Sil
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            @if (!string.IsNullOrEmpty(item.Not))
+                            {
+                                <div class="product-note mt-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-sticky-note me-1"></i>@item.Not
+                                    </small>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Sabit alt çubuk: seçili ürünler için toplu işlemler (kaydırmada hep görünür) -->
+    <div id="topluIslemlerFixed" class="toplu-islemler-fixed d-none">
+        <div class="toplu-islemler-fixed-inner">
+            <span id="topluIslemlerFixedCount" class="toplu-islemler-count"></span>
+            <button type="button" id="topluSilFixed" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Seçilenleri Sil
+            </button>
+            <button type="button" id="topluAlinanFixed" class="btn btn-success btn-sm">
+                <i class="fas fa-check"></i> Alındı Yap
+            </button>
+            <button type="button" id="topluAlinmayanFixed" class="btn btn-warning btn-sm">
+                <i class="fas fa-times"></i> Alınmayan Yap
+            </button>
+            <select id="hedefListeFixed" class="form-select form-select-sm" style="width: auto; min-width: 130px;">
+                <option value="">Hedef Liste...</option>
+                @if (tumListeler != null)
+                {
+                    @foreach (var liste in tumListeler)
+                    {
+                        <option value="@liste.Id">@liste.Ad</option>
+                    }
+                }
+            </select>
+            <button type="button" id="topluTasiFixed" class="btn btn-info btn-sm">
+                <i class="fas fa-arrow-right"></i> Taşı
+            </button>
+            <button type="button" id="secimiTemizleFixed" class="btn btn-outline-secondary btn-sm" title="Seçimi temizle">
+                <i class="fas fa-times"></i> Kapat
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let aramaTimeout;
+        const aktifListeId = @aktifListeId;
+        const seciliUrunler = new Set();
+
+        function applyFilters() {
+            const aramaMetni = document.getElementById('aramaInput').value;
+            const kategoriId = document.getElementById('kategoriFilter').value;
+            const durum = document.getElementById('durumFilter').value;
+            const siralama = document.getElementById('siralamaFilter').value;
+
+            const params = new URLSearchParams();
+            params.append('listeId', aktifListeId);
+            
+            if (aramaMetni) params.append('aramaMetni', aramaMetni);
+            if (kategoriId) params.append('kategoriId', kategoriId);
+            if (durum) params.append('filtre', durum);
+            if (siralama) params.append('siralama', siralama);
+
+            window.location.href = `?${params.toString()}`;
+        }
+
+        function getSeciliUrunler() {
+            const checkboxes = document.querySelectorAll('.toplu-checkbox:checked');
+            return Array.from(checkboxes).map(cb => parseInt(cb.dataset.urunId));
+        }
+
+        function updateTopluIslemler() {
+            const seciliSayisi = getSeciliUrunler().length;
+            const topluIslemlerFixed = document.getElementById('topluIslemlerFixed');
+            const topluIslemlerFixedCount = document.getElementById('topluIslemlerFixedCount');
+            
+            if (seciliSayisi > 0) {
+                topluIslemlerFixed.classList.remove('d-none');
+                topluIslemlerFixedCount.textContent = seciliSayisi + ' ürün seçili';
+                document.body.classList.add('toplu-islemler-fixed-visible');
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const cb = card.querySelector('.toplu-checkbox');
+                    card.classList.toggle('selected', cb && cb.checked);
+                });
+            } else {
+                topluIslemlerFixed.classList.add('d-none');
+                document.body.classList.remove('toplu-islemler-fixed-visible');
+                document.querySelectorAll('.product-card').forEach(card => card.classList.remove('selected'));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const aramaInput = document.getElementById('aramaInput');
+            const kategoriFilter = document.getElementById('kategoriFilter');
+            const durumFilter = document.getElementById('durumFilter');
+            const siralamaFilter = document.getElementById('siralamaFilter');
+            const filtreTemizle = document.getElementById('filtreTemizle');
+
+            aramaInput.addEventListener('keyup', function() {
+                clearTimeout(aramaTimeout);
+                aramaTimeout = setTimeout(applyFilters, 500);
+            });
+
+            kategoriFilter.addEventListener('change', applyFilters);
+            durumFilter.addEventListener('change', applyFilters);
+            siralamaFilter.addEventListener('change', applyFilters);
+
+            filtreTemizle.addEventListener('click', function() {
+                aramaInput.value = '';
+                kategoriFilter.value = '';
+                durumFilter.value = '';
+                siralamaFilter.value = 'tarih';
+                applyFilters();
+            });
+
+            // Toplu seçim checkbox'ları
+            document.querySelectorAll('.toplu-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const urunId = parseInt(this.dataset.urunId);
+                    if (this.checked) {
+                        seciliUrunler.add(urunId);
+                    } else {
+                        seciliUrunler.delete(urunId);
+                    }
+                    updateTopluIslemler();
+                });
+            });
+
+            // Toplu Sil
+            document.getElementById('topluSil').addEventListener('click', async function() {
+                const urunIdleri = getSeciliUrunler();
+                if (urunIdleri.length === 0) return;
+                
+                if (!confirm(`${urunIdleri.length} ürün listeden silinecek. Bu işlem geri alınamaz. Emin misiniz?`)) return;
+
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                
+                try {
+                    const response = await fetch('@Url.Action("TopluSil", "Alisveris")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': token
+                        },
+                        body: JSON.stringify({ urunIdleri: urunIdleri, listeId: aktifListeId })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        app.showToast(data.message, 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        app.showToast(data.message || 'İşlem başarısız', 'error');
+                    }
+                } catch (error) {
+                    app.showToast('Bir hata oluştu', 'error');
+                }
+            });
+
+            // Toplu Alındı Yap
+            document.getElementById('topluAlinan').addEventListener('click', async function() {
+                const urunIdleri = getSeciliUrunler();
+                if (urunIdleri.length === 0) return;
+
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                
+                try {
+                    const response = await fetch('@Url.Action("TopluAlinanYap", "Alisveris")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': token
+                        },
+                        body: JSON.stringify({ urunIdleri: urunIdleri, alinanMi: true })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        app.showToast(data.message, 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        app.showToast(data.message || 'İşlem başarısız', 'error');
+                    }
+                } catch (error) {
+                    app.showToast('Bir hata oluştu', 'error');
+                }
+            });
+
+            // Toplu Alınmayan Yap
+            document.getElementById('topluAlinmayan').addEventListener('click', async function() {
+                const urunIdleri = getSeciliUrunler();
+                if (urunIdleri.length === 0) return;
+
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                
+                try {
+                    const response = await fetch('@Url.Action("TopluAlinanYap", "Alisveris")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': token
+                        },
+                        body: JSON.stringify({ urunIdleri: urunIdleri, alinanMi: false })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        app.showToast(data.message, 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        app.showToast(data.message || 'İşlem başarısız', 'error');
+                    }
+                } catch (error) {
+                    app.showToast('Bir hata oluştu', 'error');
+                }
+            });
+
+            // Toplu Taşı
+            document.getElementById('topluTasi').addEventListener('click', async function() {
+                const urunIdleri = getSeciliUrunler();
+                const hedefListeId = parseInt(document.getElementById('hedefListe').value);
+                
+                if (urunIdleri.length === 0) return;
+                if (!hedefListeId) {
+                    app.showToast('Hedef liste seçin', 'warning');
+                    return;
+                }
+
+                const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                
+                try {
+                    const response = await fetch('@Url.Action("TopluTasi", "Alisveris")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': token
+                        },
+                        body: JSON.stringify({ urunIdleri: urunIdleri, hedefListeId: hedefListeId })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        app.showToast(data.message, 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        app.showToast(data.message || 'İşlem başarısız', 'error');
+                    }
+                } catch (error) {
+                    app.showToast('Bir hata oluştu', 'error');
+                }
+            });
+
+            // Seçimi Temizle
+            function secimiTemizle() {
+                document.querySelectorAll('.toplu-checkbox:checked').forEach(cb => {
+                    cb.checked = false;
+                });
+                seciliUrunler.clear();
+                updateTopluIslemler();
+            }
+            document.getElementById('secimiTemizle').addEventListener('click', secimiTemizle);
+
+            // Sabit alt çubuk butonları (aynı işlemi tetikle)
+            document.getElementById('topluSilFixed').addEventListener('click', function() {
+                document.getElementById('topluSil').click();
+            });
+            document.getElementById('topluAlinanFixed').addEventListener('click', function() {
+                document.getElementById('topluAlinan').click();
+            });
+            document.getElementById('topluAlinmayanFixed').addEventListener('click', function() {
+                document.getElementById('topluAlinmayan').click();
+            });
+            document.getElementById('topluTasiFixed').addEventListener('click', function() {
+                document.getElementById('hedefListe').value = document.getElementById('hedefListeFixed').value;
+                document.getElementById('topluTasi').click();
+            });
+            document.getElementById('secimiTemizleFixed').addEventListener('click', secimiTemizle);
+
+            // Hedef liste senkronizasyonu (üstteki veya alttaki değişince diğeri güncellensin)
+            document.getElementById('hedefListe').addEventListener('change', function() {
+                document.getElementById('hedefListeFixed').value = this.value;
+            });
+            document.getElementById('hedefListeFixed').addEventListener('change', function() {
+                document.getElementById('hedefListe').value = this.value;
+            });
+        });
+
+        function toggleProductStatus(productId, listeId, checkbox) {
+            const form = document.getElementById('durumForm-' + productId);
+            const formData = new FormData(form);
+            const card = checkbox.closest('.product-card');
+            const wasChecked = card.classList.contains('purchased');
+            
+            fetch('@Url.Action("DurumGuncelle", "Alisveris")', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const h6 = card.querySelector('h6');
+                    const statusBtn = card.querySelector('.status-btn');
+                    const isNowPurchased = !wasChecked;
+                    
+                    checkbox.checked = isNowPurchased;
+                    
+                    if (isNowPurchased) {
+                        card.classList.add('purchased');
+                        h6.classList.add('text-decoration-line-through', 'text-muted');
+                        statusBtn.classList.remove('status-pending');
+                        statusBtn.classList.add('status-purchased');
+                        statusBtn.innerHTML = '<i class="fas fa-check"></i> Alındı';
+                    } else {
+                        card.classList.remove('purchased');
+                        h6.classList.remove('text-decoration-line-through', 'text-muted');
+                        statusBtn.classList.remove('status-purchased');
+                        statusBtn.classList.add('status-pending');
+                        statusBtn.innerHTML = '<i class="fas fa-check"></i> Alındı yap';
+                    }
+                    
+                    app.updateStats(data.istatistik);
+                    app.showToast(isNowPurchased ? 'Ürün alındı olarak işaretlendi' : 'Ürün alınmadı olarak işaretlendi', 'success');
+                } else {
+                    app.showToast('İşlem başarısız', 'error');
+                }
+            })
+            .catch(error => {
+                app.showToast('Bir hata oluştu', 'error');
+            });
+        }
+
+        function toggleStatusFromButton(productId, listeId) {
+            const card = document.querySelector('.product-card[data-urun-id="' + productId + '"]');
+            const checkbox = card.querySelector('.product-status-checkbox');
+            toggleProductStatus(productId, listeId, checkbox);
+        }
+    </script>
+}

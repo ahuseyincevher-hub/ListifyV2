@@ -1,0 +1,169 @@
+@model IEnumerable<web_uyg.Models.AlisverisListesi>
+
+@{
+    ViewData["Title"] = "Listeler";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="fas fa-list"></i>
+            Alışveriş Listelerim
+        </h1>
+        <a asp-action="Ekle" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Yeni Liste
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <i class="fas fa-clipboard-list"></i>
+            <h3>Henüz liste yok</h3>
+            <p>İlk alışveriş listenizi oluşturun.</p>
+            <a asp-action="Ekle" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Liste Oluştur
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var liste in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100" style="border-left: 4px solid @liste.Renk;">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-list" style="color: @liste.Renk;"></i>
+                                <strong>@liste.Ad</strong>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline" type="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Duzenle" asp-route-id="@liste.Id">
+                                            <i class="fas fa-edit"></i> Düzenle
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Detay" asp-route-id="@liste.Id">
+                                            <i class="fas fa-eye"></i> Detay
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Kopyala" asp-route-id="@liste.Id">
+                                            <i class="fas fa-copy"></i> Kopyala
+                                        </a>
+                                    </li>
+                                    @if (!liste.VarsayilanMi)
+                                    {
+                                        <li>
+                                            <button class="dropdown-item varsayilan-btn" data-id="@liste.Id">
+                                                <i class="fas fa-star"></i> Varsayılan Yap
+                                            </button>
+                                        </li>
+                                    }
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <button class="dropdown-item text-danger sil-btn" data-id="@liste.Id" data-ad="@liste.Ad">
+                                            <i class="fas fa-trash"></i> Sil
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(liste.Aciklama))
+                            {
+                                <p class="text-muted mb-2">@liste.Aciklama</p>
+                            }
+                            
+                            <div class="d-flex justify-content-between align-items-center text-sm">
+                                <span class="text-muted">
+                                    <i class="fas fa-box"></i> @liste.Urunler.Count ürün
+                                </span>
+                                @if (liste.VarsayilanMi)
+                                {
+                                    <span class="badge badge-warning">
+                                        <i class="fas fa-star"></i> Varsayılan
+                                    </span>
+                                }
+                            </div>
+                            
+                            @if (liste.SonDegistirilmeTarihi.HasValue)
+                            {
+                                <small class="text-muted d-block mt-2">
+                                    <i class="fas fa-clock"></i>
+                                    Son güncelleme: @liste.SonDegistirilmeTarihi.Value.ToString("dd.MM.yyyy HH:mm")
+                                </small>
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a asp-controller="Alisveris" asp-action="Index" asp-route-listeId="@liste.Id" 
+                               class="btn btn-primary w-100">
+                                <i class="fas fa-shopping-cart"></i>
+                                Listeyi Aç
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.varsayilan-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.dataset.id;
+                if (confirm('Bu listeyi varsayılan yapmak istediğinizden emin misiniz?')) {
+                    fetch('@Url.Action("VarsayilanAyarla", "Liste")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify(id)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            app.showToast('Varsayılan liste değiştirildi', 'success');
+                            setTimeout(() => location.reload(), 1000);
+                        }
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.sil-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const ad = this.dataset.ad;
+                if (confirm(`"${ad}" listesini silmek istediğinizden emin misiniz?`)) {
+                    fetch('@Url.Action("Sil", "Liste")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify(id)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            app.showToast('Liste silindi', 'success');
+                            setTimeout(() => location.reload(), 1000);
+                        } else {
+                            app.showToast(data.message || 'Hata oluştu', 'error');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
