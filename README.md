@@ -101,4 +101,4 @@ Listify/
 Bu proje eğitim amaçlı geliştirilmiştir.
 
 ## 🔗 Bağlantılar
-- Youtube Videosu: https://www.youtube.com/watch?v=BY0fYei3vGc
+- Youtube Videosu: https://www.youtube.com/watch?v=TDVpJmc0sF4
